@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "./src/index.js",
   "bin": {
-    "weather-cli": "bin/index.js"
+    "weather-cli": "./src/index.js"
   },
   "description": "A CLI to fetch weather data.",
   "license": "MIT",
