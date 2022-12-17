@@ -79,7 +79,7 @@ $ weather-cli fetch "London" --units imperial # data will be display in Fahrenhe
 
 ## 📝 License
 
-This project is licensed under the MIT License. See the file [LICENSE](../LICENSE.md) for further details.
+This project is licensed under the MIT License. See the file [LICENSE](LICENSE.md) for further details.
 
 [⬆ Back to the top](#--weather-cli)
 
