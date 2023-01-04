@@ -16,7 +16,7 @@ export class WeatherResponse {
       code: statusText,
       data: {
         city: weatherData.name,
-        localTime: this.date.toLocaleString(`${this.localTimeFormat}`),
+        localTime: this.formatDate(this.date),
         temperature: `${Math.round(weatherData.main.temp)}${this.tempUnit}`,
         maxTemperature: `${Math.round(weatherData.main.temp_max)}${this.tempUnit}`,
         humidity: `${weatherData.main.humidity}%`,
@@ -40,4 +40,14 @@ export class WeatherResponse {
 
     return (this.wind = `${(wind * 3.6).toFixed(0)}`);
   };
+
+
+  formatDate = (date) => {
+    return new Intl.DateTimeFormat(`${this.localTimeFormat}`, {
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit'
+    }).format(date)
+  }
 }
