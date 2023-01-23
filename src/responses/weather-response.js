@@ -8,7 +8,7 @@ export class WeatherResponse {
     this.date = new Date();
   }
 
-  generateResponse({ status, statusText }, weatherData, units = 'metric') {
+  generateResponse({ status, statusText }, weatherData, units) {
     const {
       name,
       main: { temp, temp_max, humidity },
