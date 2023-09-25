@@ -1,14 +1,17 @@
 #!/usr/bin/env node
 
-import figlet from 'figlet';
 import { program } from 'commander';
+import figlet from 'figlet';
 
-import { cliName } from './utils/chalk.js';
 import { weatherService } from './services/weather-service.js';
+import { cliName } from './utils/chalk.js';
 
 console.log(cliName(figlet.textSync('Weather CLI')));
 
-program.name('weather-cli').description('CLI to fetch weather data from a city.').version('1.0.0');
+program
+  .name('weather-cli')
+  .description('CLI to fetch weather data from a city.')
+  .version('1.0.0');
 
 program
   .command('fetch')

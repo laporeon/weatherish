@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 import { env } from '../config/env.js';
-import { errorMessage } from '../utils/chalk.js';
 import { WeatherResponse } from '../responses/weather-response.js';
+import { errorMessage } from '../utils/chalk.js';
 
 class WeatherService {
   constructor() {
@@ -16,13 +16,19 @@ class WeatherService {
 
   async execute(city, units) {
     try {
-      const response = await this.api.get(`${this.path}${city}&appid=${this.key}&units=${units}`);
+      const response = await this.api.get(
+        `${this.path}${city}&appid=${this.key}&units=${units}`,
+      );
 
       const { status, statusText } = response;
 
       const weatherData = await response.data;
 
-      this.weatherResponse.generateResponse({ status, statusText }, weatherData, units);
+      this.weatherResponse.generateResponse(
+        { status, statusText },
+        weatherData,
+        units,
+      );
     } catch (err) {
       console.log(errorMessage('Error'), {
         statusCode: err.response.status,

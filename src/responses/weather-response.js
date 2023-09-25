@@ -1,7 +1,7 @@
 import { formatDate } from '../utils/date.js';
-import { convertWindSpeed } from '../utils/wind.js';
 import { formatTemperature } from '../utils/temperature.js';
 import { Units } from '../utils/units.js';
+import { convertWindSpeed } from '../utils/wind.js';
 
 export class WeatherResponse {
   constructor() {
@@ -22,7 +22,10 @@ export class WeatherResponse {
         city: name,
         localTime: formatDate(this.date, Units[units].localTimeFormat),
         temperature: formatTemperature(temp, Units[units].temperatureUnit),
-        maxTemperature: formatTemperature(temp_max, Units[units].temperatureUnit),
+        maxTemperature: formatTemperature(
+          temp_max,
+          Units[units].temperatureUnit,
+        ),
         humidity: `${humidity}%`,
         wind: convertWindSpeed(units, speed, Units[units].windSpeedUnit),
       },
