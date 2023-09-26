@@ -1,4 +1,5 @@
 import { formatDate } from '../utils/date.js';
+import { table } from '../utils/table.js';
 import { formatTemperature } from '../utils/temperature.js';
 import { Units } from '../utils/units.js';
 import { convertWindSpeed } from '../utils/wind.js';
@@ -8,27 +9,23 @@ export class WeatherResponse {
     this.date = new Date();
   }
 
-  generateResponse({ status, statusText }, weatherData, units) {
+  generateResponse(data, units) {
     const {
       name,
-      main: { temp, temp_max, humidity },
+      main: { temp, feels_like, temp_max, humidity },
       wind: { speed },
-    } = weatherData;
+    } = data;
 
-    console.log({
-      status,
-      code: statusText,
-      data: {
-        city: name,
-        localTime: formatDate(this.date, Units[units].localTimeFormat),
-        temperature: formatTemperature(temp, Units[units].temperatureUnit),
-        maxTemperature: formatTemperature(
-          temp_max,
-          Units[units].temperatureUnit,
-        ),
-        humidity: `${humidity}%`,
-        wind: convertWindSpeed(units, speed, Units[units].windSpeedUnit),
-      },
-    });
+    table.push([
+      name,
+      formatDate(this.date, Units[units].localTimeFormat),
+      formatTemperature(temp, Units[units].temperatureUnit),
+      formatTemperature(feels_like, Units[units].temperatureUnit),
+      formatTemperature(temp_max, Units[units].temperatureUnit),
+      convertWindSpeed(units, speed, Units[units].windSpeedUnit),
+      `${humidity}%`,
+    ]);
+
+    console.log(table.toString());
   }
 }
