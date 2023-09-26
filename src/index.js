@@ -4,9 +4,13 @@ import { program } from 'commander';
 import figlet from 'figlet';
 
 import { weatherService } from './services/weather-service.js';
-import { cliName } from './utils/chalk.js';
 
-console.log(cliName(figlet.textSync('Weather CLI')));
+console.log(
+  figlet.textSync('Weather CLI', {
+    font: 'Standard',
+    horizontalLayout: 'fitted',
+  }),
+);
 
 program
   .name('weather-cli')

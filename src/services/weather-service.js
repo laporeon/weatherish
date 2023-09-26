@@ -16,19 +16,10 @@ class WeatherService {
 
   async execute(city, units) {
     try {
-      const response = await this.api.get(
+      const { data } = await this.api.get(
         `${this.path}${city}&appid=${this.key}&units=${units}`,
       );
-
-      const { status, statusText } = response;
-
-      const weatherData = await response.data;
-
-      this.weatherResponse.generateResponse(
-        { status, statusText },
-        weatherData,
-        units,
-      );
+      this.weatherResponse.generateResponse(data, units);
     } catch (err) {
       console.log(errorMessage('Error'), {
         statusCode: err.response.status,
