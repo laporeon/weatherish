@@ -1,85 +1,74 @@
 <h1 align="center"> ⛅ Weather CLI</h1>
-<p align="center">Para ver o README deste projeto em Português, <a href="./docs/README.md">clique aqui</a>.
 <hr/>
 
-<p align="center">
-  <a href="#-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-about-the-project">About the project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-getting-started">Getting started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-license">License</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-</p>
+![node](https://img.shields.io/static/v1?label=node&message=18.16.1&color=2d3748&logo=node.js&style=flat-square)
+![axios](https://img.shields.io/static/v1?label=axios&message=0.27.0&color=2d3748&logo=npm&style=flat-square)
+![commander](https://img.shields.io/static/v1?label=commander&message=9.2.0&color=2d3748&logo=npm&style=flat-square)
+![figlet](https://img.shields.io/static/v1?label=figlet&message=1.5.2&color=2d3748&logo=npm&style=flat-square)
+[![eslint](https://img.shields.io/badge/eslint-8.31.0-4b32c3?style=flat-square&logo=eslint)](https://eslint.org/)
+[![MIT License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](https://raw.githubusercontent.com/laporeon/teste/main/LICENSE)
 
+This is a personal project made to learn a little bit about CLI's. It's a simple CLI that fetches weather data from a specific city, returning current local time and temperature, max temperature, feels like, humidity and wind speed.
 
-<br>
+![project](https://github.com/laporeon/weather-cli/assets/34722707/eaf6faa8-6ae4-45a7-a763-27da36f3caea)
 
-## ✨ Technologies
+## Table of Contents
 
-This project was developed using the following techs:
+- [Getting Started](#getting-started)
+  - [Requirements](#requirements)
+  - [Installing](#installing)
+  - [Configuring](#configuring)
+  - [Usage](#usage)
+    <br/>
 
-[Node.js](https://nodejs.org/en/) | [Chalk](https://github.com/chalk/chalk) | [Commander](https://www.npmjs.com/package/commander) | [Figlet](https://www.npmjs.com/package/figlet) | [OpenWeather API](https://openweathermap.org/api)
-
-<br>
-
-
-## 💻 About the project
-
-This is a personal project made to learn a little bit about CLI's. It's a simple CLI that fetchs weather data from a specific city, returning current local time and temperature, max temperature, humidity and wind speed.
-
-![project](https://user-images.githubusercontent.com/34722707/208252090-11f7890a-4b58-434c-b090-b6b2fad2d776.png)
-
-<br>
-
-## 🚀 Getting started
+## Getting Started
 
 ### **Requirements:**
 
-Before you start, please make sure you have met the following requirements:
+- [NodeJS](https://nodejs.org/en) v.16.x.x or higher
 
-- You have [Node.js](https://nodejs.org/en/) installed on your machine. Version required is v16.x.x or higher.
+### **Installing:**
 
-After that, you can follow the steps bellow:
+Yarn:
 
-- Clone the project and access its folder:
-
-```bash 
-$ git clone https://github.com/laporeon/weather-cli && cd weather-cli
-```
-- Install the dependencies
 ```bash
-$ npm i
+$ yarn
 ```
-- Now, inside the project's folder, use the following command to install it globally:
+
+NPM:
+
+```bash
+$ npm install
+```
+
+### **Configuring**
+
+After installing all the dependencies, inside the project's root folder, run the following command to install it globally. This will allow you to use the commands without the need of being inside the project's folder.
+
 ```bash
 $ npm install -g .
 ```
-This will allow you to use the commands without the need of being inside the project's folder.
 
-
-### **Usage:**
+### **Usage**
 
 This project accepts two units of measurement: metric and imperial. This option is not required, but, if you don't pass it, the default unit is going to be `metric` and local datetime format will be `pt_BR`. If you pass `imperial` as an option, all weather data will be displayed in `Fahrenheit` and local datetime format will be `en_US`.
 
-***Examples***:
+**_Examples_**:
 
-- Default:
+Default:
 
 ```bash
 $ weather-cli fetch "Curitiba" # data will be display in Celsius and date/time in Brazilian Portuguese
 ```
-![default](https://user-images.githubusercontent.com/34722707/208251993-97d30b9f-332d-4c34-8093-8f52ff8a3509.png)
 
-- Passing the unit as an option:
+![default](https://github.com/laporeon/weather-cli/assets/34722707/9bb5a9a7-b1b1-4b31-b760-6edc4957a447)
+
+Passing unit as an option:
 
 ```bash
 $ weather-cli fetch "London" --units imperial # data will be display in Fahrenheit and date/time in American English
 ```
-![imperial](https://user-images.githubusercontent.com/34722707/208251994-fc7cf988-d21c-4ffd-8cc6-6ed558d8491a.png)
 
-<br>
-
-## 📝 License
-
-This project is licensed under the MIT License. See the file [LICENSE](LICENSE.md) for further details.
+![imperial](https://github.com/laporeon/weather-cli/assets/34722707/9cd3ee65-b845-4227-ad18-3efeae774c9b)
 
 [⬆ Back to the top](#--weather-cli)
-
