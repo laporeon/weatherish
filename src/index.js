@@ -6,23 +6,22 @@ import figlet from 'figlet';
 import { weatherService } from './services/weather-service.js';
 
 console.log(
-  figlet.textSync('Weather CLI', {
+  figlet.textSync('Weatherish', {
     font: 'Standard',
     horizontalLayout: 'fitted',
   }),
 );
 
 program
-  .name('weather-cli')
-  .description('CLI to fetch weather data from a city.')
+  .name('weatherish')
+  .description('A CLI to check the weather from a city.')
   .version('1.0.0');
 
 program
-  .command('fetch')
-  .description('fetch weather data from a city.')
-  .argument('<city>', 'city name')
+  .option('-c, --city <value...>', 'city name')
   .option('-u, --units <value...>', 'choose units of measurement')
-  .action(async (city, options) => {
+  .action(async options => {
+    const { city } = options;
     let units = options.units ?? 'metric';
 
     await weatherService.execute(city, units);
@@ -30,11 +29,11 @@ program
   .addHelpText(
     'after',
     `\nExamples:
-    $ weather-cli fetch "Curitiba"
-    $ weather-cli fetch "Curitiba" -u metric
-    $ weather-cli fetch "Fortaleza" --units metric
-    $ weather-cli fetch "London" -u imperial
-    $ weather-cli fetch "California" --units imperial`,
+    $ weather -c "Curitiba"
+    $ weather -c "Curitiba" -u metric
+    $ weather -c "Fortaleza" --units metric
+    $ weather -c "London" -u imperial
+    $ weather -c "California" --units imperial`,
   )
   .showSuggestionAfterError();
 
