@@ -1,16 +1,11 @@
 #!/usr/bin/env node
 
 import { program } from 'commander';
-import figlet from 'figlet';
 
 import { weatherService } from './services/weather-service.js';
+import { title } from './utils/chalk.js';
 
-console.log(
-  figlet.textSync('Weatherish', {
-    font: 'Standard',
-    horizontalLayout: 'fitted',
-  }),
-);
+console.log(title('\nWeatherish'));
 
 program
   .name('weatherish')
