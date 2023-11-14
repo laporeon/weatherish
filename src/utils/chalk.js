@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 
-const tableHeaders = chalk.yellowBright;
 const errorMessage = chalk.red;
+const title = chalk.blue.underline.bold;
 
-export { errorMessage, tableHeaders };
+export { errorMessage, title };

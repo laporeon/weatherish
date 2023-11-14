@@ -6,22 +6,20 @@ import { errorMessage } from '../utils/chalk.js';
 
 class WeatherService {
   constructor() {
-    this.api = axios.create({
-      baseURL: env.api_base_url,
+    this.apiURL = axios.create({
+      baseURL: env.baseApiURL,
     });
-    this.path = env.api_path;
-    this.key = env.api_key;
+
     this.weatherResponse = new WeatherResponse();
   }
 
   async execute(city, units) {
     try {
-      const { data } = await this.api.get(
-        `${this.path}${city}&appid=${this.key}&units=${units}`,
-      );
+      const { data } = await this.apiURL.get(`?city=${city}&units=${units}`);
+
       this.weatherResponse.generateResponse(data, units);
     } catch (err) {
-      console.log(errorMessage('Error'), {
+      console.log(errorMessage('\nError'), {
         statusCode: err.response.status,
         statusText: err.response.statusText,
         message: 'Oops... something went wrong with your request!',
