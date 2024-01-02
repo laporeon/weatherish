@@ -14,10 +14,9 @@ program
 
 program
   .option('-c, --city <value...>', 'city name')
-  .option('-u, --units <value...>', 'choose units of measurement')
+  .option('-u, --units <value...>', 'choose units of measurement', 'metric')
   .action(async options => {
-    const { city } = options;
-    let units = options.units ?? 'metric';
+    const { city, units } = options;
 
     await weatherService.execute(city, units);
   })
