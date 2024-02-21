@@ -12,17 +12,28 @@ This is a personal project made to learn a little bit about CLI's. It's a simple
 ## Table of Contents
 
 - [Getting Started](#getting-started)
+  - [Requirements](#requirements)
   - [Installing](#installing)
   - [Usage](#usage)
     <br/>
 
 ## Getting Started
 
+### **Requirements:**
+- [NodeJS](https://nodejs.org/en) v.20 or higher
+
+If you use [NVM](https://github.com/nvm-sh/nvm), just run `nvm use` inside of the root folder.
+
 ### **Installing:**
 
-| NPM                                  | Yarn                                  |
-| ------------------------------------ | ------------------------------------- |
-| <pre>npm install -g weatherish</pre> | <pre>yarn global add weatherish</pre> |
+After cloning this repository, run the following command inside the root folder to install the project globally and allow you to use the commands at any directory you are, even if it's not the project's folder.
+
+```bash
+$ npm install -g .
+```
+
+Now you're good to go.
+
 
 ### **Usage**
 
