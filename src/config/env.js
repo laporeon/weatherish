@@ -1,3 +1,3 @@
 export const env = {
-  baseApiURL: 'http://localhost:3000/',
+  baseApiURL: 'https://weatherish-bff-gpai.onrender.com/',
 };
