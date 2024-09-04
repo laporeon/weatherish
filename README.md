@@ -4,7 +4,7 @@
 ![axios](https://img.shields.io/static/v1?label=axios&message=0.27.0&color=2d3748&logo=npm&style=flat-square)
 ![commander](https://img.shields.io/static/v1?label=commander&message=9.2.0&color=2d3748&logo=npm&style=flat-square)
 [![eslint](https://img.shields.io/badge/eslint-8.31.0-4b32c3?style=flat-square&logo=eslint)](https://eslint.org/)
-[![MIT License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](https://raw.githubusercontent.com/daspeon/teste/main/LICENSE)
+[![MIT License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](https://raw.githubusercontent.com/daspeon/weatherish/main/LICENSE)
 
 </h1>
 
