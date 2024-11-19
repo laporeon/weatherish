@@ -27,7 +27,7 @@ inquirer
     {
       type: 'list',
       name: 'units',
-      message: 'Choose what units of measurement you want to use:',
+      message: 'Choose what measurement unit you want to use:',
       default: 'metric',
       choices: ['metric', 'imperial'],
     },
