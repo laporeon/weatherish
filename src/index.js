@@ -1,34 +1,70 @@
 #!/usr/bin/env node
 
-import { program } from 'commander';
+import inquirer from 'inquirer';
+import 'dotenv/config';
 
-import { weatherService } from './services/weather-service.js';
-import { title } from './utils/chalk.js';
+import { getWeather } from './services/weather.service.js';
+import { displayLogo } from './utils/logo.js';
+import { spinner } from './utils/ora.js';
+import { generateResponse } from './utils/response.js';
 
-console.log(title('\nWeatherish'));
+displayLogo();
 
-program
-  .name('weatherish')
-  .description('A CLI to check the weather from a city.')
-  .version('1.0.0');
+inquirer
+  .prompt([
+    {
+      type: 'input',
+      message: 'Enter the city name:',
+      name: 'city',
+      validate(answer) {
+        if (answer.length === 0) {
+          return "City name can't be empty!";
+        }
 
-program
-  .option('-c, --city <value...>', 'city name')
-  .option('-u, --units <value...>', 'choose units of measurement', 'metric')
-  .action(async options => {
-    const { city, units } = options;
+        return true;
+      },
+    },
+    {
+      type: 'list',
+      name: 'units',
+      message: 'Choose what units of measurement you want to use:',
+      default: 'metric',
+      choices: ['metric', 'imperial'],
+    },
+    {
+      type: 'list',
+      name: 'date',
+      message: 'Choose how you want to display date: ',
+      default: 'dd/MM/YYYY',
+      choices: ['dd/MM/yyyy', 'MM/dd/yyyy'],
+    },
+    {
+      type: 'list',
+      name: 'time',
+      message: 'Choose how you want to display time:',
+      default: 'HH:MM',
+      choices: ['HH:MM', 'hh:mm a'],
+    },
+  ])
+  .then(async answers => {
+    const { city, units, date, time } = answers;
 
-    await weatherService.execute(city, units);
+    const datetime = `${date} ${time}`;
+
+    spinner.start();
+
+    const data = await getWeather(city, units);
+
+    spinner.stop();
+
+    generateResponse(data, units, datetime);
   })
-  .addHelpText(
-    'after',
-    `\nExamples:
-    $ weather -c "Curitiba"
-    $ weather -c "Curitiba" -u metric
-    $ weather -c "Fortaleza" --units metric
-    $ weather -c "London" -u imperial
-    $ weather -c "California" --units imperial`,
-  )
-  .showSuggestionAfterError();
+  .catch(error => {
+    spinner.stop();
 
-program.parse();
+    console.error('\nError', {
+      statusCode: error.response.status,
+      statusText: error.response.statusText,
+      message: 'Oops... something went wrong with your request!',
+    });
+  });
