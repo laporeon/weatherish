@@ -23,7 +23,7 @@ This is a personal project made to learn a little bit about Command Line Interfa
 ## Requirements:
 
 - [NodeJS](https://nodejs.org/en) v.20 or higher
-- [OpenWeatherMap](https://openweathermap.org/api) - Tche API that provides weather information.
+- [OpenWeatherMap](https://openweathermap.org/api) - The API that provides weather information.
 
 If you use [NVM](https://github.com/nvm-sh/nvm), just run `nvm use` inside of the root folder.
 
