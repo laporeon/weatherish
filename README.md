@@ -13,6 +13,8 @@
 - [About](#about)
 - [Requirements](#requirements)
 - [Installing](#installing)
+  - [Configuring](#configuring)
+    - [.env](#env)
 - [Usage](#usage)
 - [Preview](#preview)
 
@@ -40,6 +42,18 @@ NPM:
 ```bash
 $ npm i
 ```
+
+### **Configuring**
+
+For this step, you'll need to generate your api key at [OpenWeatherMap](https://openweathermap.org/api) website.
+
+#### **.env**
+
+Rename the `.env.example` file to `.env` and update the variables with your settings.
+
+| key     | description              | default |
+| ------- | ------------------------ | ------- |
+| API_KEY | OpenWeatherMap's api key | -       |
 
 ## Usage
 
