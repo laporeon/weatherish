@@ -1,10 +1,26 @@
 import { format } from 'date-fns';
 
-import { formatTemperature } from './temperature.js';
-import { Units } from './units.js';
-import { convertWindSpeed } from './wind.js';
+import { formatTemperature } from './temperature';
+import { Units, type UnitType } from './units';
+import { convertWindSpeed } from './wind';
 
-export function generateResponse(data, units, datetime) {
+interface IWeatherData {
+  name: string;
+  main: {
+    temp: number;
+    feels_like: number;
+    humidity: number;
+  };
+  wind: {
+    speed: number;
+  };
+}
+
+export const generateResponse = (
+  data: IWeatherData,
+  units: UnitType,
+  datetime: string,
+) => {
   const {
     name,
     main: { temp, feels_like, humidity },
@@ -22,4 +38,4 @@ export function generateResponse(data, units, datetime) {
     💨 Wind: ${convertWindSpeed(units, speed, Units[units].windSpeedUnit)}
     💦 Humidity: ${humidity}%
     `);
-}
+};
