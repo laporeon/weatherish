@@ -1,16 +1,16 @@
 {
   "name": "weatherish",
   "version": "1.1.0",
-  "main": "./src/index.js",
+  "main": "./dist/index.js",
   "bin": {
-    "weather": "./src/index.js"
+    "weather": "./dist/index.js"
+  },
+  "engines": {
+    "node": ">=20.18.0"
   },
   "description": "A CLI to fetch weather data.",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint . --ext .js",
-    "lint:fix": "eslint . --fix --ext .js",
-    "format": "prettier --config .prettierrc --write src/**",
     "start": "tsc && node ./dist/index.js"
   },
   "bugs": {
@@ -27,16 +27,15 @@
     "ora": "^8.2.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.17.0",
     "@types/figlet": "^1.7.0",
     "@types/node": "^22.13.4",
+    "@typescript-eslint/eslint-plugin": "^8.20.0",
+    "@typescript-eslint/parser": "^8.20.0",
     "eslint": "^9.20.1",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.3",
-    "globals": "^15.14.0",
     "prettier": "^3.5.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.3",
-    "typescript-eslint": "^8.19.1"
+    "typescript": "^5.7.3"
   }
 }
