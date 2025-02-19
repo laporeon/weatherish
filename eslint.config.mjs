@@ -1,13 +1,19 @@
-import globals from 'globals';
-import pluginJs from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import prettier from 'eslint-plugin-prettier';
+import prettierConfig from 'eslint-config-prettier';
+import typescriptParser from '@typescript-eslint/parser';
 
-/** @type {import('eslint').Linter.Config[]} */
 export default [
-  { files: ['**/*.{js,mjs,cjs,ts}'] },
-  { languageOptions: { globals: globals.browser } },
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  eslintPluginPrettierRecommended,
+  {
+    files: ['**/*.{ts,js,mjs}'],
+    languageOptions: {
+      parser: typescriptParser,
+    },
+    plugins: {
+      prettier,
+    },
+    rules: {
+      ...prettierConfig.rules,
+    },
+    ignores: ['eslint.config.mjs', 'node_modules'],
+  },
 ];
