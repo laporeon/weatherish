@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import figlet from 'figlet';
 
-export function displayLogo() {
+export const displayLogo = () => {
   return console.log(
     chalk.green.bold(
       figlet.textSync('\nWeatherish', {
@@ -11,4 +11,4 @@ export function displayLogo() {
     ),
     '\n',
   );
-}
+};

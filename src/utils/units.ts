@@ -1,4 +1,12 @@
-export const Units = {
+export type UnitType = 'metric' | 'imperial';
+
+interface UnitConfig {
+  localTimeFormat: string;
+  temperatureUnit: string;
+  windSpeedUnit: string;
+}
+
+export const Units: Record<UnitType, UnitConfig> = {
   metric: {
     localTimeFormat: 'pt-BR',
     temperatureUnit: '°C',

@@ -3,10 +3,10 @@
 import inquirer from 'inquirer';
 import 'dotenv/config';
 
-import { getWeather } from './services/weather.service.js';
-import { displayLogo } from './utils/logo.js';
-import { spinner } from './utils/ora.js';
-import { generateResponse } from './utils/response.js';
+import { getWeather } from './services/weather-service';
+import { displayLogo } from './utils/logo';
+import { spinner } from './utils/ora';
+import { generateResponse } from './utils/response';
 
 displayLogo();
 
