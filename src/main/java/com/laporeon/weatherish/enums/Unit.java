@@ -1,5 +1,8 @@
 package com.laporeon.weatherish.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum Unit {
 
     METRIC("pt-BR", "°C", "km/h"),
@@ -15,8 +18,7 @@ public enum Unit {
         this.windSpeedUnit = windSpeedUnit;
     }
 
-    public String getLocalTimeFormat() { return localTimeFormat; }
-    public String getTemperatureUnit() { return temperatureUnit; }
-    public String getWindSpeedUnit() { return windSpeedUnit; }
-
+    public static Unit fromString(String unit) {
+        return valueOf(unit.toUpperCase());
+    }
 }
