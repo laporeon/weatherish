@@ -1,10 +1,12 @@
 package com.laporeon.weatherish;
 
+import com.laporeon.weatherish.client.WeatherClient;
+
 import java.util.Scanner;
 
 public class Weatherish {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		clearScreen();
 
 		Scanner scanner = new Scanner(System.in);
@@ -17,11 +19,20 @@ public class Weatherish {
 				    \\_/\\_/ \\___|\\__,_|\\__|_| |_|\\___|_|  |_|___/_| |_|
 				   \s""");
 
-		System.out.print("Press enter to exit: ");
-		scanner.nextLine();
+		System.out.print("Enter city name: ");
+		String city = scanner.nextLine();
 
-		clearScreen();
+		System.out.print("Choose what measurement unit you want to use: ");
+		String unit = scanner.nextLine();
+
+
+		WeatherClient weatherClient = new WeatherClient();
+		String response = weatherClient.getData(city, unit);
 		scanner.close();
+		clearScreen();
+
+		System.out.printf("Response: %s", response);
+
 	}
 
 	private static void clearScreen() {
