@@ -1,6 +1,8 @@
 package com.laporeon.weatherish;
 
 import com.laporeon.weatherish.client.WeatherClient;
+import com.laporeon.weatherish.helpers.Formatter;
+import com.laporeon.weatherish.models.Weather;
 
 import java.util.Scanner;
 
@@ -20,18 +22,17 @@ public class Weatherish {
 				   \s""");
 
 		System.out.print("Enter city name: ");
-		String city = scanner.nextLine();
+		String city = scanner.nextLine().trim();
 
-		System.out.print("Choose what measurement unit you want to use: ");
-		String unit = scanner.nextLine();
+		System.out.print("Choose what measurement unit you want to use (e.g. metric, imperial): ");
+		String unit = scanner.nextLine().trim();
 
+		Weather response = new WeatherClient().getData(city, unit);
+		String formattedResponse = Formatter.formatOutput(response, unit);
 
-		WeatherClient weatherClient = new WeatherClient();
-		String response = weatherClient.getData(city, unit);
 		scanner.close();
-		clearScreen();
 
-		System.out.printf("Response: %s", response);
+		System.out.printf("\n%s\n", formattedResponse);
 
 	}
 
