@@ -29,7 +29,7 @@ public class Formatter {
         String temperature = Formatter.formatTemperature(data.main.temp, unit);
         String feelsLike = Formatter.formatTemperature(data.main.feelsLike, unit);
         String wind = Formatter.formatWindSpeed(data.wind.speed, unit);
-        String humidity = String.format("%.0f %%", data.main.humidity);
+        String humidity = String.format("%.0f%%", data.main.humidity);
 
         return """
                     📌 City: %s
