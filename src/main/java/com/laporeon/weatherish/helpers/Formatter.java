@@ -19,8 +19,8 @@ public class Formatter {
 
         return """
                     📌 City: %s
-                    🕓 Local Time: %s
-                    🌡 Temperature: %s
+                    🕓 Date: %s
+                    🌞 Temperature: %s
                     🔥 Feels like: %s
                     💨 Wind: %s
                     💦 Humidity: %s
