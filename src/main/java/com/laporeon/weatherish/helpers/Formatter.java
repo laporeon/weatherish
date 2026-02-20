@@ -11,11 +11,11 @@ public class Formatter {
     public String formatOutput(Weather data, String unit) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd MMM, HH:mm");
 
-        String name = data.name;
-        String temperature = formatTemperature(data.main.temp, unit);
-        String feelsLike = formatTemperature(data.main.feelsLike, unit);
-        String wind = formatWindSpeed(data.wind.speed, unit);
-        String humidity = String.format("%.0f%%", data.main.humidity);
+        String name = data.name();
+        String temperature = formatTemperature(data.main().temp(), unit);
+        String feelsLike = formatTemperature(data.main().feelsLike(), unit);
+        String wind = formatWindSpeed(data.wind().speed(), unit);
+        String humidity = String.format("%.0f%%", data.main().humidity());
 
         return """
                     📌 City: %s
