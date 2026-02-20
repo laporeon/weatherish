@@ -1,10 +1,9 @@
-<h1 align="center"> ⛅ Weatherish
+<h1 align="center"> Weatherish
 
-![node](https://img.shields.io/static/v1?label=node&message=20.9.0&color=2d3748&logo=node.js&style=flat-square)
-![axios](https://img.shields.io/static/v1?label=axios&message=1.7.7&color=2d3748&logo=npm&style=flat-square)
-![inquirer](https://img.shields.io/static/v1?label=inquirer&message=12.1.0&color=2d3748&logo=npm&style=flat-square)
-[![eslint](https://img.shields.io/badge/eslint-8.31.0-4b32c3?style=flat-square&logo=eslint)](https://eslint.org/)
-[![MIT License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](https://github.com/daspeon/weatherish/blob/main/LICENSE.md)
+![java](https://img.shields.io/static/v1?label=java&message=21.0.9&labelColor=2d3748&color=grey&logo=openjdk&logoColor=white&style=flat)
+![maven](https://img.shields.io/static/v1?label=maven&message=3.9.12&labelColor=2d3748&color=grey&logo=apachemaven&logoColor=white&style=flat)
+[![MIT License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](https://github.com/laporeon/weatherish/blob/main/LICENSE.md)
+
 
 </h1>
 
@@ -12,7 +11,7 @@
 
 - [About](#about)
 - [Requirements](#requirements)
-- [Installing](#installing)
+- [Getting Started](#getting-started)
   - [Configuring](#configuring)
     - [.env](#env)
 - [Usage](#usage)
@@ -20,51 +19,48 @@
 
 ## About
 
-This is a personal project made to learn a little bit about Command Line Interfaces. It's a simple CLI that fetches weather data from a specific city, provided by the user, returning current local time and temperature, feels like, humidity and wind speed. As a couple of extra features, user can choose which unit of measurement to use and how date and time will be displayed.
+Weatherish is a Java-based CLI that fetches real-time weather data for any city using the OpenWeatherMap API. It 
+displays current temperature, feels like, humidity, wind speed and local time, all from your terminal.
 
-## Requirements:
+## Requirements
 
-- [NodeJS](https://nodejs.org/en) v.20 or higher
-- [OpenWeatherMap](https://openweathermap.org/api) - The API that provides weather information.
+- Java 21+
+- Maven
 
-If you use [NVM](https://github.com/nvm-sh/nvm), just run `nvm use` inside of the root folder.
+## Getting Started
 
-## **Installing:**
-
-Yarn:
-
-```bash
-$ yarn
-```
-
-NPM:
-
-```bash
-$ npm i
-```
-
-### **Configuring**
-
-For this step, you'll need to generate your api key at [OpenWeatherMap](https://openweathermap.org/api) website.
+### Configuring
 
 #### **.env**
 
-Rename the `.env.example` file to `.env` and update the variables with your settings.
+For this step, you'll need to generate your api key at [OpenWeatherMap](https://openweathermap.org/api) website.
+
+Rename the `.env.example` file to `.env` and update the variable with your generated key.
 
 | key     | description              | default |
 | ------- | ------------------------ | ------- |
 | API_KEY | OpenWeatherMap's api key | -       |
 
 ## Usage
+Inside the **root** folder, compile and run the application using the following commands:
 
-### **Starting**
+1. Compile application:
 
 ```bash
-$ npm start
+mvn compile
 ```
+
+2. Run application:
+
+```bash
+mvn exec:java
+```
+
+Then follow on-screen instructions.
+
 
 ## Preview
 
-![weatherish](./assets/weatherish.gif)
+![weatherish](./src/main/resources/assets/weatherish.gif)
 
-[⬆ Back to the top](#--weatherish)
+[⬆ Back to the top](#-weatherish)
