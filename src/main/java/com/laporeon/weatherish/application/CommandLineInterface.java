@@ -30,6 +30,7 @@ public class CommandLineInterface {
             System.out.printf("\n%s%s%s\n", Color.RED, ex.getMessage(), Color.RESET);
         }
 
+        System.exit(0);
     }
 
     private String promptCity() {
