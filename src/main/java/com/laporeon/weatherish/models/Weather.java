@@ -1,26 +1,19 @@
 package com.laporeon.weatherish.models;
 
 import com.google.gson.annotations.SerializedName;
-import lombok.Data;
 
-@Data
-public class Weather {
+public record Weather(
+        String name,
+        Main main,
+        Wind wind
+) {
 
-    public String name;
-    public Main main;
-    public Wind wind;
+    public record Main(
+            double temp,
+            @SerializedName("feels_like")
+            double feelsLike,
+            double humidity
+    ) {}
 
-    public static class Main {
-        public double temp;
-
-        @SerializedName("feels_like")
-        public double feelsLike;
-
-        public double humidity;
-    }
-
-    public static class Wind {
-        public double speed;
-    }
-
+    public record Wind(double speed) {}
 }
