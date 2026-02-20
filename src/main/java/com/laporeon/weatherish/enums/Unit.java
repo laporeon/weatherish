@@ -5,15 +5,13 @@ import lombok.Getter;
 @Getter
 public enum Unit {
 
-    METRIC("pt-BR", "°C", "km/h"),
-    IMPERIAL("en-US", "°F", "mph");
+    METRIC("°C", "km/h"),
+    IMPERIAL("°F", "mph");
 
-    private final String localTimeFormat;
     private final String temperatureUnit;
     private final String windSpeedUnit;
 
-    Unit(String localTimeFormat, String temperatureUnit, String windSpeedUnit) {
-        this.localTimeFormat = localTimeFormat;
+    Unit(String temperatureUnit, String windSpeedUnit) {
         this.temperatureUnit = temperatureUnit;
         this.windSpeedUnit = windSpeedUnit;
     }
