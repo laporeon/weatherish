@@ -11,8 +11,9 @@ import java.util.Scanner;
 public class CommandLineInterface {
 
     Scanner scanner = new Scanner(System.in);
+    Formatter formatter = new Formatter();
 
-    public void start() throws Exception {
+    public void start() {
         displayLogo();
 
         String city = promptCity();
@@ -20,10 +21,15 @@ public class CommandLineInterface {
 
         scanner.close();
 
-        Weather data = new WeatherClient().getData(city, unit);
-        String formattedResponse = Formatter.formatOutput(data, unit);
+        try {
+            Weather data = new WeatherClient().getData(city, unit);
+            String formattedResponse = formatter.formatOutput(data, unit);
 
-        System.out.printf("\n%s\n", formattedResponse);
+            System.out.printf("\n%s\n", formattedResponse);
+        } catch (Exception ex) {
+            System.out.printf("\n%s%s%s\n", Color.RED, ex.getMessage(), Color.RESET);
+        }
+
     }
 
     private String promptCity() {
