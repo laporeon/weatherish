@@ -5,45 +5,58 @@
 	<groupId>com.laporeon</groupId>
 	<artifactId>weatherish</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>weatherish</name>
+	<name>Weatherish</name>
 	<description>Java-based CLI to fetch weather data.</description>
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>https://opensource.org/licenses/MIT</url>
+		</license>
+	</licenses>
 	<properties>
-		<maven.compiler.source>21</maven.compiler.source>
-		<maven.compiler.target>21</maven.compiler.target>
+		<maven.compiler.release>21</maven.compiler.release>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<main.class>com.laporeon.weatherish.Weatherish</main.class>
+		<gson.version>2.11.0</gson.version>
+		<dotenv.version>3.2.0</dotenv.version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
-			<version>2.11.0</version>
+			<version>${gson.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>io.github.cdimascio</groupId>
 			<artifactId>dotenv-java</artifactId>
-			<version>3.2.0</version>
+			<version>${dotenv.version}</version>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>3.0.0</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.6.0</version>
 				<executions>
 					<execution>
+						<id>shade</id>
+						<phase>package</phase>
 						<goals>
-							<goal>java</goal>
+							<goal>shade</goal>
 						</goals>
+						<configuration>
+							<finalName>weatherish</finalName>
+							<createDependencyReducedPom>false</createDependencyReducedPom>
+							<transformers>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>${main.class}</mainClass>
+								</transformer>
+							</transformers>
+						</configuration>
 					</execution>
 				</executions>
-				<configuration>
-					<mainClass>com.laporeon.weatherish.Weatherish</mainClass>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
