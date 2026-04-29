@@ -10,8 +10,15 @@ import java.util.Scanner;
 
 public class CommandLineInterface {
 
-    Scanner scanner = new Scanner(System.in);
-    Formatter formatter = new Formatter();
+    private final Scanner scanner;
+    private final Formatter formatter;
+    private final WeatherClient weatherClient;
+
+    public CommandLineInterface(Scanner scanner, Formatter formatter, WeatherClient weatherClient) {
+        this.scanner = scanner;
+        this.formatter = formatter;
+        this.weatherClient = weatherClient;
+    }
 
     public void start() {
         displayLogo();
@@ -22,9 +29,8 @@ public class CommandLineInterface {
         scanner.close();
 
         try {
-            Weather data = new WeatherClient().getData(city, unit);
+            Weather data = weatherClient.getData(city, unit);
             String formattedResponse = formatter.formatOutput(data, unit);
-
             System.out.printf("\n%s\n", formattedResponse);
         } catch (Exception ex) {
             System.out.printf("\n%s%s%s\n", Color.RED, ex.getMessage(), Color.RESET);
