@@ -13,7 +13,7 @@
 - [Requirements](#requirements)
 - [Getting Started](#getting-started)
   - [Configuring](#configuring)
-    - [.env](#env)
+    - [Environment Variables](#environment-variables)
   - [Building](#building)
   - [Running](#running)
     - [Linux and macOS](#linux-and-macos)
@@ -28,21 +28,43 @@ displays current temperature, feels like, humidity, wind speed and local time, a
 ## Requirements
 
 - Java 21+
-- Maven
+- Maven 3.9+
 
 ## Getting Started
 
 ### Configuring
 
-#### **.env**
+#### Environment Variables
 
-For this step, you'll need to generate your API key at [OpenWeatherMap](https://openweathermap.org/api) website.
+You'll need an API key from [OpenWeatherMap](https://openweathermap.org/api).
 
-Rename the `.env.example` file to `.env` and update the variable with your generated key.
+Set the `API_KEY` environment variable before running the application.
 
-| key     | description              | default |
-| ------- | ------------------------ | ------- |
-| API_KEY | OpenWeatherMap API key | -       |
+**Linux / macOS:**
+
+For the current session only:
+```bash
+export API_KEY=your-api-key
+```
+
+To persist, add to your `~/.bashrc` or `~/.zshrc` and reload:
+```bash
+export API_KEY=your-api-key
+source ~/.bashrc  # or source ~/.zshrc
+```
+
+**Windows — Command Prompt:**
+```cmd
+set API_KEY=your-api-key
+```
+
+**Windows — PowerShell:**
+```powershell
+$env:API_KEY = "your-api-key"
+```
+
+> [!NOTE]
+> `set` and `$env:` are session-only on Windows. To persist, add via System Properties → Environment Variables.
 
 ### Building
 
@@ -60,28 +82,28 @@ This will create an executable JAR file at `target/weatherish.jar`.
 
 On Linux and macOS, you have several options to run the application:
 
-- Option 1: Direct JAR execution
+**Option 1: Direct JAR execution**
 
-  ```bash
-  java -jar target/weatherish.jar
-  ```
+```bash
+java -jar target/weatherish.jar
+```
 
-- Option 2: Using the wrapper script
-  > [!NOTE]
-  > First time only, make the script executable:
-  > ```bash
-  > chmod +x weatherish
-  > ```
+**Option 2: Using the wrapper script**
+> [!NOTE]
+> First time only, make the script executable:
+> ```bash
+> chmod +x weatherish
+> ```
 
-  ```bash
-  ./weatherish 
-  ```
+```bash
+./weatherish 
+```
 
-- Option 3: Create a system-wide alias by adding this to your `.bashrc` or `.zshrc`:
+**Option 3: Create a system-wide alias by adding this to your `.bashrc` or `.zshrc`:**
 
-  ```bash
-  alias weatherish='java -jar /full/path/to/weatherish/target/weatherish.jar'
-  ```
+```bash
+alias weatherish='java -jar /full/path/to/weatherish/target/weatherish.jar'
+```
 
 Then reload your profile (`source ~/.bashrc` or `source ~/.zshrc`) or restart your terminal.
 
@@ -91,14 +113,15 @@ Now you can use `weatherish` from anywhere in your terminal.
 
 For Windows environments, you can execute the application by choosing one of the following options:
 
-- Option 1: Using the wrapper script
-  ```bat
-  weatherish.bat 
-  ```
-- Option 2: Create a system-wide alias by adding this to your PowerShell profile:
-  ```powershell
-  function weatherish { java -jar "C:\full\path\to\weatherish\target\weatherish.jar" }
-  ```
+**Option 1: Using the wrapper script**
+```bat
+weatherish.bat 
+```
+
+**Option 2: Create a system-wide alias by adding this to your PowerShell profile:**
+```powershell
+function weatherish { java -jar "C:\full\path\to\weatherish\target\weatherish.jar" }
+```
 Then reload your profile (`. $PROFILE`) or restart your terminal.
 
 Now you can use `weatherish` from anywhere in your terminal.
@@ -106,7 +129,7 @@ Now you can use `weatherish` from anywhere in your terminal.
 
 ## Usage
 
-Run the application and enter the desired city when prompted. The CLI will display current weather information for that location.
+Run the application using preferred option and enter the desired city when prompted. The CLI will display current weather information for that location.
 
 ## Preview
 
