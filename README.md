@@ -12,14 +12,8 @@
 - [About](#about)
 - [Requirements](#requirements)
 - [Getting Started](#getting-started)
-  - [Configuring](#configuring)
-    - [Environment Variables](#environment-variables)
-  - [Building](#building)
-  - [Running](#running)
-    - [Linux and macOS](#linux-and-macos)
-    - [Windows](#windows)
 - [Usage](#usage)
-- [Preview](#preview)
+
 ## About
 
 Weatherish is a Java-based CLI that fetches current weather data for any city using the OpenWeatherMap API. It 
@@ -32,33 +26,31 @@ displays current temperature, feels like, humidity, wind speed and local time, a
 
 ## Getting Started
 
-### Configuring
+**1. Set up your API key**
 
-#### Environment Variables
+You'll need an API key from [OpenWeatherMap](https://openweathermap.org/api). Once inside the project directory, set the `API_KEY` variable:
 
-You'll need an API key from [OpenWeatherMap](https://openweathermap.org/api).
+Linux / macOS — for the current session only:
 
-Set the `API_KEY` environment variable before running the application.
-
-**Linux / macOS:**
-
-For the current session only:
 ```bash
 export API_KEY=your-api-key
 ```
 
-To persist, add to your `~/.bashrc` or `~/.zshrc` and reload:
+To persist, add to your `.bashrc` or `.zshrc` and reload:
+
 ```bash
 export API_KEY=your-api-key
 source ~/.bashrc  # or source ~/.zshrc
 ```
 
-**Windows — Command Prompt:**
+Windows — Command Prompt:
+
 ```cmd
 set API_KEY=your-api-key
 ```
 
-**Windows — PowerShell:**
+Windows — PowerShell:
+
 ```powershell
 $env:API_KEY = "your-api-key"
 ```
@@ -66,72 +58,68 @@ $env:API_KEY = "your-api-key"
 > [!NOTE]
 > `set` and `$env:` are session-only on Windows. To persist, add via System Properties → Environment Variables.
 
-### Building
-
-After cloning this repository, build the project using Maven:
+**2. Build**
 
 ```bash
 mvn clean package
 ```
 
-This will create an executable JAR file at `target/weatherish.jar`.
+This will create an executable JAR at `target/weatherish.jar`.
 
-### Running
+**3. Run**
 
-#### Linux and macOS
+Pick the option that fits your workflow:
 
-On Linux and macOS, you have several options to run the application:
-
-**Option 1: Direct JAR execution**
+**Option 1 — Direct JAR execution**
 
 ```bash
+# Linux / macOS
 java -jar target/weatherish.jar
+ 
+# Windows
+java -jar target\weatherish.jar
 ```
 
-**Option 2: Using the wrapper script**
-> [!NOTE]
-> First time only, make the script executable:
-> ```bash
-> chmod +x weatherish
-> ```
+**Option 2 — Wrapper script**
 
 ```bash
-./weatherish 
+# Linux / macOS (first time only: make it executable)
+chmod +x weatherish
+./weatherish
+ 
+# Windows
+weatherish.bat
 ```
 
-**Option 3: Create a system-wide alias by adding this to your `.bashrc` or `.zshrc`:**
+**Option 3 — System-wide alias (run `weatherish` from anywhere)**
+
+Linux / macOS — add to your `.bashrc` or `.zshrc`:
 
 ```bash
 alias weatherish='java -jar /full/path/to/weatherish/target/weatherish.jar'
 ```
 
-Then reload your profile (`source ~/.bashrc` or `source ~/.zshrc`) or restart your terminal.
+Then reload your profile:
 
-Now you can use `weatherish` from anywhere in your terminal.
-
-#### Windows
-
-For Windows environments, you can execute the application by choosing one of the following options:
-
-**Option 1: Using the wrapper script**
-```bat
-weatherish.bat 
+```bash
+source ~/.bashrc  # or source ~/.zshrc
 ```
 
-**Option 2: Create a system-wide alias by adding this to your PowerShell profile:**
+Windows — add to your PowerShell profile (`$PROFILE`):
+
 ```powershell
 function weatherish { java -jar "C:\full\path\to\weatherish\target\weatherish.jar" }
 ```
-Then reload your profile (`. $PROFILE`) or restart your terminal.
 
-Now you can use `weatherish` from anywhere in your terminal.
+Then reload:
 
+```powershell
+. $PROFILE
+```
 
 ## Usage
 
-Run the application using preferred option and enter the desired city when prompted. The CLI will display current weather information for that location.
-
-## Preview
+Run the application using your preferred option and enter the desired city when prompted. The CLI will display current weather information for that location.
 
 ![weatherish](./src/main/resources/assets/weatherish.gif)
 
