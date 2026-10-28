@@ -9,14 +9,10 @@ import com.laporeon.weatherish.models.Weather;
 import java.util.Scanner;
 
 public class CommandLineInterface {
-
-    private final Scanner scanner;
-    private final Formatter formatter;
+    private final Scanner scanner = new Scanner(System.in);
     private final WeatherClient weatherClient;
 
-    public CommandLineInterface(Scanner scanner, Formatter formatter, WeatherClient weatherClient) {
-        this.scanner = scanner;
-        this.formatter = formatter;
+    public CommandLineInterface(WeatherClient weatherClient) {
         this.weatherClient = weatherClient;
     }
 
@@ -24,58 +20,58 @@ public class CommandLineInterface {
         displayLogo();
 
         String city = promptCity();
-        String unit = promptUnit();
+        Unit unit = promptUnit();
 
         scanner.close();
 
         try {
             Weather data = weatherClient.getData(city, unit);
-            String formattedResponse = formatter.formatOutput(data, unit);
+            String formattedResponse = Formatter.formatOutput(data, unit);
             System.out.printf("\n%s\n", formattedResponse);
         } catch (Exception ex) {
             System.out.printf("\n%s%s%s\n", Color.RED, ex.getMessage(), Color.RESET);
         }
-
-        System.exit(0);
     }
 
     private String promptCity() {
-        System.out.printf("%sEnter city name: %s", Color.BOLD, Color.RESET);
-        String city = scanner.nextLine().trim();
+        String city;
 
-        while (city.isEmpty()) {
-            System.out.printf("%s%sCity name cannot be empty. Try again...%s\n", Color.ITALIC, Color.RED, Color.RESET);
+        do {
             System.out.printf("%sEnter city name: %s", Color.BOLD, Color.RESET);
             city = scanner.nextLine().trim();
-        }
+
+            if (city.isEmpty()) {
+                System.out.printf("%s%sCity name cannot be empty. Try again...%s%n", Color.ITALIC, Color.RED, Color.RESET);
+            }
+        } while (city.isEmpty());
 
         return city;
     }
 
-    private String promptUnit() {
+    private Unit promptUnit() {
         System.out.printf("""
         %sChoose a measurement unit:
         [1] Metric (°C, km/h)
         [2] Imperial (°F, mph)%s
         """, Color.BOLD, Color.RESET);
-        System.out.printf("%sEnter your choice: %s", Color.BOLD, Color.RESET);
-        String input = scanner.nextLine().trim();
+        String input;
 
-        while (!input.equals("1") && !input.equals("2")) {
-            System.out.printf("%s%sInvalid option. Try again...%s\n", Color.ITALIC, Color.RED, Color.RESET);
+        do {
             System.out.printf("%sEnter your choice: %s", Color.BOLD, Color.RESET);
             input = scanner.nextLine().trim();
-        }
 
-        int value = Integer.parseInt(input);
-        return Unit.values()[value - 1].name();
+            if (!input.equals("1") && !input.equals("2")) {
+                System.out.printf("%s%sInvalid option. Try again...%s%n", Color.ITALIC, Color.RED, Color.RESET);
+            }
+        } while (!input.equals("1") && !input.equals("2"));
+
+        return Unit.fromOption(input);
     }
 
     private void displayLogo() {
         clearScreen();
 
         System.out.printf("%s" + """
-        
          __        __         _   _               _     _
          \\ \\      / /__  __ _| |_| |__   ___ _ __(_)___| |__
           \\ \\ /\\ / / _ \\/ _` | __| '_ \\ / _ \\ '__| / __| '_ \\
@@ -88,5 +84,4 @@ public class CommandLineInterface {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
-
 }

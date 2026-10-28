@@ -6,9 +6,8 @@ import com.laporeon.weatherish.models.Weather;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Formatter {
-
-    public String formatOutput(Weather data, String unit) {
+public abstract class Formatter {
+    public static String formatOutput(Weather data, Unit unit) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd MMM, HH:mm");
 
         String name = data.name();
@@ -16,6 +15,7 @@ public class Formatter {
         String feelsLike = formatTemperature(data.main().feelsLike(), unit);
         String wind = formatWindSpeed(data.wind().speed(), unit);
         String humidity = String.format("%.0f%%", data.main().humidity());
+        String date = LocalDateTime.now().format(dateTimeFormatter);
 
         return """
                     📌 City: %s
@@ -24,21 +24,18 @@ public class Formatter {
                     🔥 Feels like: %s
                     💨 Wind: %s
                     💦 Humidity: %s
-                """.formatted(name, LocalDateTime.now().format(dateTimeFormatter), temperature, feelsLike, wind, humidity);
+                """.formatted(name, date, temperature, feelsLike, wind, humidity);
     }
 
-    private String formatWindSpeed(double speed, String unit) {
-        Unit unitEnum = Unit.fromString(unit);
-
-        if (unitEnum == Unit.IMPERIAL) {
-            return String.format("%.0f %s", speed, unitEnum.getWindSpeedUnit());
+    private static String formatWindSpeed(double speed, Unit unit) {
+        if (unit == Unit.IMPERIAL) {
+            return String.format("%.0f %s", speed, unit.getWindSpeedUnit());
         }
 
-        return String.format("%.0f %s", speed * 3.6, unitEnum.getWindSpeedUnit());
+        return String.format("%.0f %s", speed * 3.6, unit.getWindSpeedUnit());
     }
 
-    private String formatTemperature(double temperature, String unit) {
-        return String.format("%.0f%s", temperature, Unit.fromString(unit).getTemperatureUnit());
+    private static String formatTemperature(double temperature, Unit unit) {
+        return String.format("%.0f%s", temperature, unit.getTemperatureUnit());
     }
-
 }
