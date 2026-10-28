@@ -2,16 +2,17 @@ package com.laporeon.weatherish.client;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.laporeon.weatherish.enums.Color;
+import com.laporeon.weatherish.enums.Unit;
 import com.laporeon.weatherish.models.Weather;
 
 import java.net.URI;
+import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 
 public class WeatherClient {
-
     private static final String BASE_URL = "https://api.openweathermap.org/data/2.5";
     private static final String ERROR_MESSAGE = "❌ Error %s: %s. Please check your input and try again.";
 
@@ -19,18 +20,22 @@ public class WeatherClient {
     private final HttpClient httpClient;
     private final String apiKey;
 
-    public WeatherClient(Gson gson, HttpClient httpClient) {
+    public WeatherClient(Gson gson, HttpClient httpClient, String apiKey) {
         this.gson = gson;
         this.httpClient = httpClient;
-        this.apiKey = resolveApiKey();
+        this.apiKey = apiKey;
     }
 
-    public Weather getData(String city, String unit) throws Exception {
-        // Only spaces need to be encoded as %20 to produce a valid URL
-        // as OpenWeatherMap API handles city name with accents.
-        String formattedCity = city.replace(" ", "%20");
+    public Weather getData(String city, Unit unit) throws Exception {
+        String encodedCity = URLEncoder.encode(city + ",BR", StandardCharsets.UTF_8)
+                                       .replace("+", "%20");
 
-        String url = BASE_URL + "/weather?q=" + formattedCity + "&appid=" + apiKey + "&units=" + unit;
+        String url = "%s/weather?q=%s&appid=%s&units=%s".formatted(
+                BASE_URL,
+                encodedCity,
+                URLEncoder.encode(apiKey, StandardCharsets.UTF_8),
+                unit.getValue()
+        );
 
         HttpRequest request = HttpRequest.newBuilder()
                                          .uri(URI.create(url))
@@ -48,14 +53,4 @@ public class WeatherClient {
 
         return gson.fromJson(response.body(), Weather.class);
     }
-
-    private static String resolveApiKey() {
-        String key = System.getenv("API_KEY");
-        if (key == null || key.isBlank()) {
-            System.err.printf("%s❌ Error: API_KEY variable is not set.%s", Color.RED, Color.RESET);
-            System.exit(1);
-        }
-        return key;
-    }
-
 }
