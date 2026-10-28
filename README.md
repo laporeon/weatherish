@@ -126,13 +126,16 @@ target/weatherish.jar
 
 ### 3. Run
 
-Using Make:
+Pick the option that fits your workflow:
+
+**Option 1 - Using Make:**
 
 ```bash
+# Linux / macOS only
 make run
 ```
 
-Or execute the JAR directly:
+**Option 2 — Direct JAR execution**
 
 ```bash
 # Linux / macOS
@@ -141,6 +144,20 @@ java -jar target/weatherish.jar
 # Windows
 java -jar target\weatherish.jar
 ```
+
+**Option 3 — Wrapper script**
+
+```bash
+# Linux / macOS (first time only: make it executable)
+chmod +x weatherish
+./weatherish
+
+# Windows PowerShell
+.\weatherish.bat
+```
+
+The wrappers run the JAR generated at `target/weatherish.jar`. Build the application first with
+`make build`, `./mvnw clean package`, or `mvnw.cmd clean package`, depending on your platform.
 
 ### 4. Install as a local command
 
