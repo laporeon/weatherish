@@ -52,7 +52,6 @@ Run `make help` to list all available targets.
 | `make env` | Create `.env` from `.env.example` if it does not exist | Linux/macOS: `test -f .env || cp .env.example .env`<br>Windows PowerShell: `if (-not (Test-Path .env)) { Copy-Item .env.example .env }` |
 | `make build` | Clean and package the executable JAR | Linux/macOS: `./mvnw clean package`<br>Windows: `mvnw.cmd clean package` |
 | `make compile` | Compile the project | Linux/macOS: `./mvnw compile`<br>Windows: `mvnw.cmd compile` |
-| `make test` | Run the test suite | Linux/macOS: `./mvnw test`<br>Windows: `mvnw.cmd test` |
 | `make verify` | Run Maven verification | Linux/macOS: `./mvnw verify`<br>Windows: `mvnw.cmd verify` |
 | `make clean` | Clean Maven build artifacts | Linux/macOS: `./mvnw clean`<br>Windows: `mvnw.cmd clean` |
 | `make run` | Create `.env` if missing, build, and run the application locally | Linux/macOS: `test -f .env || cp .env.example .env; ./mvnw clean package && java -jar target/weatherish.jar`<br>Windows PowerShell: `if (-not (Test-Path .env)) { Copy-Item .env.example .env }; .\mvnw.cmd clean package; java -jar target/weatherish.jar` |

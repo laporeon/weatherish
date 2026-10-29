@@ -9,7 +9,7 @@ PROJECT_DIR := $(abspath .)
 INSTALL_DIR ?= $(HOME)/.local/bin
 LAUNCHER    := $(INSTALL_DIR)/$(APP_NAME)
 
-.PHONY: help env build compile test verify clean run install uninstall
+.PHONY: help env build compile verify clean run install uninstall
 
 help: ## Show available commands
 	@awk 'BEGIN {FS = ":.*## "} /^[a-zA-Z_-]+:.*## / {printf "  \033[36m%-10s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -22,9 +22,6 @@ build: ## Clean and build the executable JAR
 
 compile: ## Compile the project
 	$(MVN) compile
-
-test: ## Run the test suite
-	$(MVN) test
 
 verify: ## Run Maven verification
 	$(MVN) verify
