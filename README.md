@@ -15,8 +15,6 @@
   - [Configure your API key](#1-configure-your-api-key)
   - [Build and run](#2-build-and-run)
   - [Install as a local command](#3-install-as-a-local-command)
-    - [Linux / macOS](#linux--macos)
-    - [Windows PowerShell](#windows-powershell)
 - [Usage](#usage)
 
 ## About
