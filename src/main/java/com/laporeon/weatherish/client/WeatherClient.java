@@ -2,8 +2,8 @@ package com.laporeon.weatherish.client;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.laporeon.weatherish.domain.Weather;
 import com.laporeon.weatherish.enums.Unit;
-import com.laporeon.weatherish.models.Weather;
 
 import java.net.URI;
 import java.net.URLEncoder;

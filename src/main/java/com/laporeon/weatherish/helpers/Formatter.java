@@ -1,7 +1,7 @@
 package com.laporeon.weatherish.helpers;
 
+import com.laporeon.weatherish.domain.Weather;
 import com.laporeon.weatherish.enums.Unit;
-import com.laporeon.weatherish.models.Weather;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
