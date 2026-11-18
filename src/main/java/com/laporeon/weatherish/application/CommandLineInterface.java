@@ -1,10 +1,10 @@
 package com.laporeon.weatherish.application;
 
 import com.laporeon.weatherish.client.WeatherClient;
+import com.laporeon.weatherish.domain.Weather;
 import com.laporeon.weatherish.enums.Color;
 import com.laporeon.weatherish.enums.Unit;
 import com.laporeon.weatherish.helpers.Formatter;
-import com.laporeon.weatherish.models.Weather;
 
 import java.util.Scanner;
 
