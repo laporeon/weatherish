@@ -1,4 +1,4 @@
-package com.laporeon.weatherish.models;
+package com.laporeon.weatherish.domain;
 
 import com.google.gson.annotations.SerializedName;
 
